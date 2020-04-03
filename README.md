@@ -1,2 +1,2 @@
 # Snai.Gin
-Gin 学习
+gin 学习
