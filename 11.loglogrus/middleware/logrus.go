@@ -67,8 +67,6 @@ func LoggerToFile() gin.HandlerFunc {
 		// 请求路由
 		reqUri := c.Request.RequestURI
 
-		//get参数
-
 		// post参数
 		if c.Request.Method == "POST" {
 			c.Request.ParseForm()
