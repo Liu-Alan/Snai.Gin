@@ -31,4 +31,19 @@ func main() {
 	r.GET("/somexml", func(c *gin.Context) {
 		c.XML(http.StatusOK, gin.H{"message": "hey", "status": http.StatusOK})
 	})
+
+	r.GET("/someprotobuf", func(c *gin.Context) {
+		reps := []int64{int64(1), int64(2)}
+		label := "test"
+		// The specific definition of protobuf is written in the testdata/protoexample file.
+		data := &protoexample.Test{
+			Label: &label,
+			Reps:  reps,
+		}
+		// Note that data becomes binary data in the response
+		// Will output protoexample.Test protobuf serialized data
+		c.ProtoBuf(http.StatusOK, data)
+	})
+
+	r.Run(":8080")
 }
