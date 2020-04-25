@@ -13,7 +13,7 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"message": "hey", "status": http.StatusOK})
 	})
 
-	r.GET("/morejson", func(c *gin.Context) {
+	router.GET("/morejson", func(c *gin.Context) {
 		// You also can use a struct
 		var msg struct {
 			Name    string `json:"user"`
@@ -28,11 +28,15 @@ func main() {
 		c.JSON(http.StatusOK, msg)
 	})
 
-	r.GET("/somexml", func(c *gin.Context) {
+	router.GET("/somexml", func(c *gin.Context) {
 		c.XML(http.StatusOK, gin.H{"message": "hey", "status": http.StatusOK})
 	})
 
-	r.GET("/someprotobuf", func(c *gin.Context) {
+	router.GET("/someyaml", func(c *gin.Context) {
+		c.YAML(http.StatusOK, gin.H{"message": "hey", "status": http.StatusOK})
+	})
+
+	router.GET("/someprotobuf", func(c *gin.Context) {
 		reps := []int64{int64(1), int64(2)}
 		label := "test"
 		// The specific definition of protobuf is written in the testdata/protoexample file.
@@ -45,5 +49,6 @@ func main() {
 		c.ProtoBuf(http.StatusOK, data)
 	})
 
+	// Listen and serve on 0.0.0.0:8080
 	r.Run(":8080")
 }
