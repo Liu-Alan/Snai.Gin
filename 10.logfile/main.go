@@ -13,6 +13,7 @@ func main() {
 	gin.DisableConsoleColor()
 
 	//创建记录日志的文件
+	//这里把日志名取当前年月日就可以实现日志按天写了
 	f, _ := os.OpenFile("gin.log", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	gin.DefaultWriter = io.MultiWriter(f)
 
