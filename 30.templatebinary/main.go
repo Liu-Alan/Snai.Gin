@@ -12,7 +12,7 @@ import (
 func loadTemplate() (*template.Template, error) {
 	t := template.New("")
 	for name, file := range Assets.Files {
-		if file.IsDir() || !strings.HasSuffix(name, ".tmpl") {
+		if file.IsDir() || !strings.HasSuffix(name, ".html") {
 			continue
 		}
 
@@ -32,14 +32,16 @@ func loadTemplate() (*template.Template, error) {
 func main() {
 	router := gin.New()
 
-	router, err := loadTemplate()
+	template, err := loadTemplate()
 	if err != nil {
 		panic(err)
 	}
-	router.SetHTMLTemplate(t)
+	router.SetHTMLTemplate(template)
 
-	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "/html/index.html", nil)
+	router.GET("/", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "/html/index.html", gin.H{
+			"Foo": "World",
+		})
 	})
 
 	router.Run(":8080")
