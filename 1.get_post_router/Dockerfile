@@ -4,6 +4,10 @@ WORKDIR $GOPATH/src/Snai.Gin/1.get_post_router
 COPY get_post_router /
 WORKDIR /
 
+RUN apk add -U tzdata
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+  && echo 'Asia/Shanghai' >/etc/timezone
+
 EXPOSE 8080
 
 ENTRYPOINT ["./get_post_router"]
@@ -15,3 +19,6 @@ ENTRYPOINT ["./get_post_router"]
 # docker stop
 # docker rm
 # docker rmi
+# docker exec -it CONTAINER_ID sh
+# ifconfig eth0
+# date
