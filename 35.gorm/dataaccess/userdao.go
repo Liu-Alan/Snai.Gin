@@ -12,7 +12,7 @@ var Db *gorm.DB
 
 func init() {
 	var err error
-	Db, err = gorm.Open("mysql", "root:810618@/snai?charset=utf8&parseTime=True")
+	Db, err = gorm.Open("mysql", "root:as123@/snai?charset=utf8&parseTime=True")
 
 	if err == nil {
 		hasTable := Db.HasTable(entities.User{})
