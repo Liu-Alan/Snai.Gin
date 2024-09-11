@@ -1,2 +1,2 @@
 # Snai.Gin
-go gin 
+go gin gorm
